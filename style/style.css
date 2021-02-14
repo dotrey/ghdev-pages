@@ -1,0 +1,325 @@
+@font-face {
+    font-family: "Open Sans Regular";
+    src: url('/style/font/OpenSans-Regular.ttf'); /* see font/Apache License.txt */
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Roboto Mono Regular";
+    src: url('/style/font/RobotoMono-Regular.ttf'); /* see font/Apache License.txt */
+    font-display: swap;
+}
+
+:root {
+    font-size: 62.5%;
+    --background: #fbfbfb;
+    --section-background: #f0f0f0;
+    --content-background: #fff;
+    --card-background: rgba(255, 255, 255, 0.9);
+    --font-color: #111111;
+    --link-color:#006eff;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {        
+        --background: #2b2b2b;
+        --section-background: #333333;
+        --content-background: #3f3f3f;
+        --card-background: rgba(42, 42, 42, 0.9);
+        --font-color: #eeeeee;
+        --link-color:#589df6;
+    }
+}
+
+html, body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    --gradient-hue: 0;
+    --gradient: linear-gradient(90deg, 
+        hsl(calc(var(--gradient-hue) + 0), 100%, 50%),
+        hsl(calc(var(--gradient-hue) + 60), 100%, 50%),
+        hsl(calc(var(--gradient-hue) + 120), 100%, 50%),
+        hsl(calc(var(--gradient-hue) + 180), 100%, 50%),
+        hsl(calc(var(--gradient-hue) + 240), 100%, 50%),
+        hsl(calc(var(--gradient-hue) + 300), 100%, 50%),
+        hsl(calc(var(--gradient-hue) + 360), 100%, 50%)
+    );
+    background: var(--background);
+    font-family: "Open Sans", "Open Sans Regular", Arial, sans-serif;
+    font-size: 1.6rem;
+    color: var(--font-color);
+    line-height: 1.4;
+    z-index: 0;
+}
+
+a, a:visited {
+    color: var(--main-color);
+    text-decoration: underline;
+    transition: 0.2s linear color;
+}
+
+a:hover {
+    color: var(--link-color);
+}
+
+main {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+section {
+    position: relative;
+    height: auto;
+    width: 100%;
+    background: transparent;
+    --bridge-color: #333;
+}
+
+section .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 80%;
+    line-height: 2;
+    text-align: center;
+}
+
+section .content {
+    position: relative;
+    margin: 5rem auto;
+    box-sizing: border-box;
+    padding: 2rem;
+    background: var(--content-background);
+    width: 100%;
+    max-width: 60rem;
+    box-shadow: 0 0 1rem rgba(0,0,0,0.1);
+    z-index: 2;
+}
+
+section .content.centered {
+    text-align: center;
+}
+
+section .content h2 {
+    font-weight: 300;
+    padding: 0;
+    margin: 0.5em 0 1em 0;
+}
+
+section .content h2:not(:first-of-type) {
+    margin-top: 2em;
+}
+
+section .content .fullstack {
+    position: relative;
+    width: max-content;
+    margin: 1em auto;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+section .content .fullstack>div {
+    position: relative;
+    padding: 1em 2em;
+    line-height: 1;
+    border: 1px solid var(--font-color);
+    border-radius: 0.5em;
+    font-family: "Roboto Mono Regular", monospace;
+    text-align: center;
+    margin: 1px 0;
+}
+
+section .content .projects {
+    position: relative;
+    margin: 1em auto;
+    width: 80%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+section .content .projects .project {
+    width: 45%;
+}
+
+section .content .projects .project h3 {
+    font-size: 100%;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+}
+
+section .content .projects .project p {
+    font-size: 80%;
+}
+
+section.start {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+section.start .container {
+    position: relative;
+    box-sizing: border-box;
+    padding: 2em;
+    background-color: var(--card-background);
+}
+
+section.start h1 {
+    font-size: 2em;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+}
+
+section.start h2 {
+    font-size: 1.25em;
+    font-weight: 300;
+    margin: 0;
+    padding: 0 0.25em;
+}
+
+section.about,
+section.projects,
+section.contact {
+    background: var(--section-background);
+    --bridge-color: var(--section-background);
+}
+
+section.contact {
+    height: 25vh;
+}
+
+section.pre-window {
+    height: 0;
+    z-index: 1;
+}
+
+section.window-1 {
+    background: #ff8800;
+    height: 50rem;
+    mix-blend-mode: difference;
+}
+
+section.window-2 {
+    background: linear-gradient(90deg, #ff0000, #0000ff);
+    height: 50rem;
+    mix-blend-mode: color-dodge;
+}
+
+.section-bridge {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    --skew-angle: 2.5;
+    --delta-h: calc(100vw * var(--skew-angle) * 0.017455);
+    --delta-hh: calc(var(--delta-h) / 2);
+    --bar-height: 0.8rem;
+    transform: skewY(calc(1deg * var(--skew-angle)));
+    padding: var(--delta-hh) 0;
+    height: calc(var(--delta-h) * 3);
+    top: calc(var(--delta-hh) * -3);
+    box-sizing: border-box;
+    z-index: 0;
+}
+
+.section-bridge::before {
+    position: absolute;
+    display: block;
+    content: "";
+    background: var(--gradient);
+    top: var(--delta-hh);
+    bottom: var(--delta-hh);
+    width: 100%;
+    height: calc(100% - var(--delta-h));
+}
+
+.section-bridge::after {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 100%;
+    top: calc(var(--bar-height) + var(--delta-hh));
+    bottom: calc(var(--bar-height) + var(--delta-hh));
+    background: var(--bridge-color);
+}
+
+.section-bridge.top-border::after {
+    bottom: 0;
+}
+
+.section-bridge.bottom-border::after {
+    top: 0;
+}
+
+.section-bridge.no-border::after {
+    top: 0;
+    bottom: 0;
+}
+
+.cells-ts-probe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 16px;
+    height: 16px;
+    z-index: -999;
+}
+
+.cells-ts-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+
+@media screen and (max-width: 550px) {
+    section.start .container {
+        margin-top: 100%;
+    }
+
+    section.start h1 {
+        font-size: 1.7em;
+    }
+
+    section.start h2 {
+        font-size: 1.15em;
+    }
+
+    section.window-1,
+    section.window-2 {
+        height: 20rem;
+    }
+
+    section.contact {
+        height: 35vh;
+    }
+
+    section .content .projects {
+        flex-flow: column wrap;
+    }
+
+    section .content .projects .project {
+        width: 100%;
+        margin-top: 2em;
+    }
+}
